@@ -48,7 +48,7 @@ The skill runs eight phases in order. It never skips to fixing before it underst
 
 - **Flows:** obvious next step, primary action, predictable navigation, back behaviour, dead ends, lost progress, feedback after actions.
 - **Typography:** one hierarchy (display → heading → body → caption → button → tab), consistent sizes, weights and line heights.
-- **Spacing:** accidental values (13, 17, 23…) consolidated into a scale.
+- **Spacing:** accidental values (13, 17, 23…) consolidated into a scale, and every boundary (header to content, gaps between groups, card and widget edges) checked in full-resolution crops.
 - **Alignment:** headers, cards, lists and especially the **bottom tab bar** (widths, centres, safe area, active states).
 - **Components:** the same concept looks and behaves the same way; duplicates are merged into the canonical version.
 - **Design system:** uses the existing tokens and never invents random values.
@@ -172,6 +172,13 @@ Yes: `/mobile-app-studio --report-only`.
 Only with a strong technical reason. It uses what the project already has, for example Reanimated, Flutter's animation APIs or SwiftUI animations.
 
 ## Changelog
+
+### v1.1.0
+
+- Spacing boundaries are now an explicit check: header to first content, gaps between groups, the outer edges of cards and widgets, and the bottom area.
+- Spacing, alignment and clipping are judged only from full-resolution crops, never from downscaled screenshots.
+- New common findings: content flush against the header divider, holes and empty bands in fixed-size containers, and chips truncated beside artwork.
+- Fix repeated spacing defects in the shared shell or component instead of patching screens one by one.
 
 ### v1.0.0
 

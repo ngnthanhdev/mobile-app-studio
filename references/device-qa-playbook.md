@@ -6,7 +6,7 @@ The audit is done on a running app, not from source code. Screens must be seen, 
 
 - Use `mcp__Claude_Code_iOS_Simulator__control` when it is available. Call `attach` first so the user can watch.
 - The main actions are `screenshot`, `tap`, `swipe`, `text` and `open_url`. Coordinates are in device points; take a screenshot to locate targets before tapping.
-- Pass `scale: 0.5` for overview screenshots and full scale for detail.
+- Pass `scale: 0.5` for overview screenshots and full scale for detail. **Never judge spacing, alignment or clipping from a downscaled screenshot:** a missing 16 pt gap, a 1 pt misalignment or a truncated label disappears below about 50 % scale.
 - `inspect` gives the accessibility tree when it is available. Use it to check labels, but it is not always available.
 - **Fresh first-launch state:** `xcrun simctl uninstall <udid> <bundle>` and then `install <app>`. Tell the user if their test data is affected.
 - **Deep links** open any route directly (`<scheme>://path`). Use them to reach modals and hidden screens fast.
@@ -29,6 +29,7 @@ Use the browser pane's `resize_window` with the mobile preset (375×812) only wh
 ## Verification habits
 
 - Photograph every screen and state you audit, and again after the fix. Keep the pairs in the report folder if the project stores verification images.
+- **Full-resolution crops:** for each screen, save a full-size screenshot (`xcrun simctl io booted screenshot file.png` or `adb exec-out screencap -p > file.png`) and crop the header, the first content, the edges of cards or widgets and the bottom area at 100 %. Review spacing and alignment only from these crops.
 - **Keyboard:** focus the **last** input of every form, then check that it and the submit button stay visible.
 - **Content length:** try long names, empty lists and one item versus many (for pluralisation).
 - **Forms:** try an empty submit, invalid input, a valid submit, and what happens next (the destination and the feedback).

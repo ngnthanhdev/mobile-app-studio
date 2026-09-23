@@ -25,6 +25,9 @@ These issues keep recurring in mobile prototypes and fast builds. Check for them
 - **Fractional dashed borders** (1.5px) render inconsistently on iOS, and some dividers disappear. Use 1px for dashed borders.
 - **Equivalent tiles with different vertical alignment.** One tile's value sits at the top and another's at the bottom. Top-align them all.
 - **Arbitrary truncation** such as a fixed `maxWidth` on a name while space is left. Let the text flex and shrink.
+- **Content flush against the header divider.** The screen shell adds no top padding under the app bar, so some screens patch their own gap and others (often forms and sheets) touch the line. Add the gap once in the shell and remove the patches.
+- **Holes and empty bands in fixed-size containers** such as cards and home-screen widgets. Spacers push groups to the top and bottom, leaving a hole in the middle; or a small group is centred, leaving empty bands at the edges. Size the content (artwork, type, buttons) to fill the container and use fixed gaps between groups.
+- **Chips truncated beside artwork** ("Section do…"). In tight containers, drop the chip's label or icon, or move it to its own row.
 - **Emoji mixed into an icon set,** which breaks the icon style. Use the icon library.
 - **Raster art with baked-in text:** labels or captions from a generated sheet still visible under an illustration. Clean the asset.
 

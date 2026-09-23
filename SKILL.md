@@ -8,7 +8,7 @@ keywords: [ux-audit, ui-review, mobile, qa, motion, animation, accessibility, de
 argument-hint: "[scope: whole app | screen or flow] [--report-only] [--no-motion]"
 metadata:
   author: ngnthanhdev
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Mobile App Studio — UX & Motion Audit
@@ -63,7 +63,7 @@ Follow `references/ux-audit-checklist.md` §1–2. For each important flow:
 4. Try edge cases.
 5. Watch the loading, empty and error states, the keyboard, scrolling, sheets and modals, and the transitions.
 
-Walk complete journeys, for example home → tab → list → detail → back, and home → create → form → validation → submit → success. Take a screenshot of every screen and state. Read the source of each screen alongside it, so you know the owner of every problem.
+Walk complete journeys, for example home → tab → list → detail → back, and home → create → form → validation → submit → success. Take a screenshot of every screen and state, and a full-resolution crop of each screen's boundaries: header to first content, card and widget edges, and the bottom area. Read the source of each screen alongside it, so you know the owner of every problem.
 
 ## Phase 3 — Audit and write the report
 
@@ -94,7 +94,7 @@ Work P0 → P1 → P2 → P3. Don't spend time on a 2px nudge while a flow is br
 
 ## Phase 5 — Re-test on the device (mandatory)
 
-Re-run the original flows and check every modified screen. Cover navigation and back, the keyboard, different content lengths, and the empty, loading and error states. Check the tab bar and alignment, and look for regressions. Perform each changed animation at normal speed; screenshots alone cannot judge motion. Run typecheck, lint and tests, and compare them with the baseline.
+Re-run the original flows and check every modified screen. Cover navigation and back, the keyboard, different content lengths, and the empty, loading and error states. Check the tab bar and alignment, re-check every boundary in full-resolution crops (not downscaled screenshots), and look for regressions. Perform each changed animation at normal speed; screenshots alone cannot judge motion. Run typecheck, lint and tests, and compare them with the baseline.
 
 ## Phase 6 — Second pass
 

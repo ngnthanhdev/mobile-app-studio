@@ -49,6 +49,15 @@ Define one hierarchy adapted to the product: display, heading, subheading, body,
 
 **Spacing.** Check screen padding, section gaps, card padding, icon-to-text, title-to-subtitle, buttons, list items, inputs, top and bottom spacing, and modal padding. Replace accidental values (12 here, 13, 17 or 23 elsewhere) with a coherent scale and tokens.
 
+Check every **boundary** on every screen, in a full-resolution crop (see `device-qa-playbook.md`), never in a downscaled screenshot:
+
+- **Header → first content:** the first label, card or field must not sit flush against the app bar, its divider or the status bar. Check sheets and modals too, since they often use a different header.
+- **Between groups:** related items sit close together and unrelated groups sit further apart. There should be no accidental hole in the middle of a card, form or widget.
+- **Outer edges:** content inside a card, tile or home-screen widget fills it evenly. An empty band along the top, bottom or side means the layout is centred or stretched instead of sized.
+- **Last content → bottom:** the last item clears the tab bar, home indicator and keyboard.
+
+If the same gap is wrong on several screens, fix it once in the shared screen shell or component, and remove the per-screen patches. Patches drift apart and leave some screens uncovered.
+
 **Alignment.** Check tabs, headers, titles, cards, buttons, inputs, icons, avatars, lists and horizontal padding.
 
 - **Bottom tab bar:** equal tab widths and spacing, centred icons and labels, vertical position, safe area, active and inactive states, the icon–label relationship, top and bottom padding, height, and consistency across screens. If it looks even slightly off-centre, fix it.
