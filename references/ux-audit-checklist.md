@@ -34,6 +34,8 @@ For every flow ask:
 - Is the destination obvious after an action?
 - Are there unnecessary screens or redundant actions? Is information in the right order?
 
+**Flow completeness.** Follow `flow-coverage.md`: build the flow inventory from the source (routes, deep links, notification handlers, widgets, intents, store actions), walk every flow in every data state, and keep a coverage matrix. A flow is complete only when it is reachable, gives feedback, lands in the right place, persists, can be undone or is confirmed, never dead-ends, and updates every other surface that shows the same data.
+
 ## §3 Consistency
 
 **Typography.** Check family, size, weight, line height, letter spacing, capitalisation, heading and body hierarchy, button text, tab labels, placeholders and secondary text. Look for:
@@ -107,6 +109,8 @@ For each, ask: can this be simpler without losing clarity?
 Fix confusing wording, inconsistent terminology, overly technical language, inconsistent capitalisation, unclear CTA labels, awkward error messages, redundant text and long labels. Prefer concise, action-oriented copy: "Continue", not "Click here in order to continue to the next step". Don't rewrite copy that already works.
 
 ## §8 States, accessibility, perceived performance
+
+**Out-of-app surfaces.** Widgets (every family fills its tile, interactive elements write back), notifications (the tap destination), lock-screen content, Shortcuts and intents, deep links, and saved files. They are part of the product and get the same audit.
 
 **States.** A missing state is a real UX bug.
 

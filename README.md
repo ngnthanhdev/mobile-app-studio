@@ -9,7 +9,7 @@
 - **UX QA Engineer:** states, keyboard, safe areas, accessibility, regressions.
 - **Senior Mobile Motion Designer:** transitions, feedback, timing, easing, reduced motion.
 
-It does not stop at a list of opinions. It **runs your app on a simulator or emulator**, uses it like a first-time user, writes a prioritised audit (P0–P3), **fixes the issues in your code**, **re-tests every fix on the device**, and then does a second full pass.
+It does not stop at a list of opinions. It **runs your app on a simulator or emulator**, uses it like a first-time user, **walks every flow the code makes possible** (including notifications, widgets, Shortcuts and deep links), writes a prioritised audit (P0–P3), **fixes the issues in your code**, **re-tests every fix on the device**, and then does a second full pass.
 
 Works with **Expo / React Native, Flutter, SwiftUI / UIKit and native Android**.
 
@@ -36,8 +36,8 @@ The skill runs eight phases in order. It never skips to fixing before it underst
 | # | Phase | What happens |
 |---|---|---|
 | 0 | **Set up the device and the evidence** | Detects the stack, finds the design tokens or theme, gets the app running on a simulator or emulator, and records the typecheck, lint and test baseline. |
-| 1 | **Understand the product** | Works out what the app is, who it is for, the primary goal, core and secondary screens, and the actions users perform most often. |
-| 2 | **Use it like a real user** | Walks complete journeys (home → list → detail → back, create → form → validation → success…). Observes the loading, empty and error states, the keyboard, sheets and transitions, and screenshots everything. |
+| 1 | **Understand the product** | Works out what the app is, who it is for, the primary goal, core and secondary screens, the actions users perform most often, and builds a **flow inventory from the source**: routes, actions, store mutations, permissions, background jobs, deep links, notifications, widgets and intents. |
+| 2 | **Use it like a real user** | Walks complete journeys, then **every flow in the inventory** in every data state (fresh install, one item, many, long text, completed, missing target, permission denied, interrupted). Checks persistence in storage and fills in a coverage matrix. |
 | 3 | **Audit and report** | Goes through the UI/UX checklists and the motion checklist, classifies every issue P0–P3, and writes a report. |
 | 4 | **Fix** | Makes the smallest clean change for each issue, reuses the existing tokens and components, consolidates duplicated components, and adds no hacks or arbitrary offsets. |
 | 5 | **Re-test on the device** | Re-runs the flows, checks every modified screen, performs animations at normal speed, and runs typecheck, lint and tests against the baseline. |
@@ -47,6 +47,8 @@ The skill runs eight phases in order. It never skips to fixing before it underst
 ### What it checks
 
 - **Flows:** obvious next step, primary action, predictable navigation, back behaviour, dead ends, lost progress, feedback after actions.
+- **Flow completeness:** every flow is reachable, gives feedback, lands in the right place, persists across relaunch, can be undone or is confirmed, never dead-ends, and updates every other surface that shows the same data. Store actions that no screen calls are reported.
+- **Out-of-app surfaces:** home-screen widgets in every family (no empty bands, interactive elements write back), notification taps, Shortcuts and App Intents, deep links, and saved photos or files.
 - **Typography:** one hierarchy (display → heading → body → caption → button → tab), consistent sizes, weights and line heights.
 - **Spacing:** accidental values (13, 17, 23…) consolidated into a scale, and every boundary (header to content, gaps between groups, card and widget edges) checked in full-resolution crops.
 - **Alignment:** headers, cards, lists and especially the **bottom tab bar** (widths, centres, safe area, active states).
@@ -98,6 +100,7 @@ You can also just ask in plain language. The skill triggers on requests such as 
 |---|---|
 | `/mobile-app-studio` | Full run: audit, fix, re-test and a second pass across the whole app |
 | `/mobile-app-studio checkout flow` | Limits the audit and fixes to one screen or flow. The product-understanding phase still covers the whole app. |
+| `/mobile-app-studio --flows` | Flow-coverage pass only: inventory every flow, walk each one in every data state, fix what leaves a flow incomplete, re-test, and report the coverage matrix |
 | `/mobile-app-studio --report-only` | Audit and report only, with no code changes |
 | `/mobile-app-studio --no-motion` | Skips the motion passes |
 
@@ -148,7 +151,8 @@ mobile-app-studio/
     ├── motion-audit-checklist.md         # Motion principles, opportunities, timing, easing, physics, checks
     ├── device-qa-playbook.md             # Driving the iOS simulator, Android emulator and dev servers
     ├── report-template.md                # Audit report structure and final reply format
-    └── common-findings.md                # Issues that keep recurring in mobile apps, with the usual fixes
+    ├── common-findings.md                # Issues that keep recurring in mobile apps, with the usual fixes
+    └── flow-coverage.md                  # Flow inventory, data states, out-of-app surfaces, coverage matrix
 ```
 
 ## Customising
@@ -172,6 +176,21 @@ Yes: `/mobile-app-studio --report-only`.
 Only with a strong technical reason. It uses what the project already has, for example Reanimated, Flutter's animation APIs or SwiftUI animations.
 
 ## Changelog
+
+### v1.2.0
+
+- **Flow coverage.** A new `references/flow-coverage.md` and a `--flows` mode. The skill now builds a flow inventory from the source (routes, actions, store mutations, permissions, background work, deep links, notifications, widgets, intents), walks every flow in every data state, verifies persistence in storage, and reports a coverage matrix. A flow is only "complete" when it is reachable, gives feedback, lands in the right place, persists, is reversible or confirmed, never dead-ends, and updates every other surface.
+- **"Not testable" needs an attempt.** The device playbook now covers testing real notifications, adding and tapping home-screen widgets, running Shortcuts and App Intents (with log checks), seeding and verifying the photo library, reading the app's database from the simulator container, and recording motion as frame strips.
+- **35 new common findings from a real audit:**
+  - swipe-to-dismiss losing edits, completion without undo, dead-end finished lists, and blank "not found" screens;
+  - context-blind "Add" buttons, store actions no screen calls, and permission prompts at launch;
+  - picker double-tap races and heavy background work on every change;
+  - English autocorrect on other languages, and the last word dropped on quick entry;
+  - status-bar collisions, magic tab-bar insets, toasts that shift layout, clipped chip rows and option panels, and misaligned grid neighbours;
+  - widget empty bands and overflow, and native controls restyled by iOS 26;
+  - rounded-down money, parser false positives, and stale "now" indicators;
+  - deprecated APIs that throw at runtime, and Fast Refresh duplicates.
+- Every reply in the user's language, including progress notes and task labels.
 
 ### v1.1.0
 

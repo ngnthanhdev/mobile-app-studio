@@ -12,6 +12,11 @@ Date · Device and OS · Build / how it was run
 - Core vs secondary screens
 - Most frequent action(s), and where they live
 
+## Flow coverage
+| Flow | Entry | States walked | Result (Complete / Fixed / Product decision / Not testable here) | Evidence |
+
+Totals: N flows, N complete, N fixed, N need a decision, N not testable (each with what was tried).
+
 ## Flow issues
 | # | Issue | Screen | Why it matters | Fix | P |
 
