@@ -8,7 +8,7 @@ keywords: [ux-audit, ui-review, mobile, qa, flow-coverage, e2e, widgets, motion,
 argument-hint: "[scope: whole app | screen or flow] [--flows] [--report-only] [--no-motion]"
 metadata:
   author: ngnthanhdev
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # Mobile App Studio — UX & Motion Audit
@@ -67,7 +67,7 @@ Follow `references/ux-audit-checklist.md` §1–2. For each important flow:
 4. Try edge cases.
 5. Watch the loading, empty and error states, the keyboard, scrolling, sheets and modals, and the transitions.
 
-Walk complete journeys, for example home → tab → list → detail → back, and home → create → form → validation → submit → success. Then walk **every flow in the inventory** in the data states from `references/flow-coverage.md` (fresh install, one item, many items, long text, completed, missing target, permission denied, interrupted), including the out-of-app surfaces, and fill in the coverage matrix. Verify persistence in the app's storage, not only on screen. Take a screenshot of every screen and state, and a full-resolution crop of each screen's boundaries: header to first content, card and widget edges, and the bottom area. Read the source of each screen alongside it, so you know the owner of every problem.
+Walk complete journeys, for example home → tab → list → detail → back, and home → create → form → validation → submit → success. Then walk **every flow in the inventory** in the data states from `references/flow-coverage.md` (fresh install, one item, many items, long text, longest generated label, completed, missing target, permission denied, interrupted), including the out-of-app surfaces, and fill in the coverage matrix. Verify persistence in the app's storage, not only on screen. Take a screenshot of every screen and state, and a full-resolution crop of each screen's boundaries: header to first content, card and widget edges, the inside of every button, pill and chip, and the bottom area. Read the source of each screen alongside it, so you know the owner of every problem.
 
 ## Phase 3 — Audit and write the report
 

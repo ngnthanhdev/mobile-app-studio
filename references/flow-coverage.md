@@ -37,6 +37,7 @@ For each flow, cover the states that change its behaviour:
 | Typical data | Realistic content in the user's language, including diacritics and long words. |
 | Many items | 20–50 items: lists, "+N more", scrolling, performance of background work. |
 | Long content | A title of 100+ characters: wrapping, truncation, alignment of neighbours. |
+| Longest generated label | A short label built from data (a weekday, a name, a count, a date, a translation) at its longest value, for example "Chủ nhật" rather than "Thứ 2". Find the possible values in the source and force the longest one. Check it on the narrowest supported screen (iPhone SE, 375 pt) and with the largest text size. |
 | Completed / emptied | Finish everything in a list: what is left on screen, and what can be done next. |
 | Missing target | Open a deep link or notification whose item was deleted. |
 | Permission allowed and denied | Both branches; denied must offer a way to Settings. |
@@ -62,6 +63,8 @@ One row per flow, in the report:
 | Tick from widget | Home-screen widget | typical | Complete after fix W2 | DB row status = done |
 
 Use exactly one result per row: **Complete**, **Fixed** (it was not complete, now it is, with the fix ID), **Product decision** (completing it needs a business choice), or **Not testable here**.
+
+The result judges the flow, not how the screens on its path look. Walking a flow is also a visual check of every screen and state it passes through: crop the controls the flow uses, and record any spacing, clipping or alignment defect as a UI finding with its own ID, even when the row says Complete. In the Evidence column, link the UI findings raised on that path, or write "no UI findings".
 
 **"Not testable here" needs proof of an attempt.** Before using it, try the flow: add the widget, wait for the notification, run the Shortcut, seed the photo library, record the screen. Use the label only when the environment physically cannot do it (no microphone, no lock-screen editor in the simulator, no Android SDK), and write what was tried. Never list a flow as untested because it looked hard.
 

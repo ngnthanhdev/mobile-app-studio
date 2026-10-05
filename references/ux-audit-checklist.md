@@ -56,6 +56,7 @@ Check every **boundary** on every screen, in a full-resolution crop (see `device
 - **Header → first content:** the first label, card or field must not sit flush against the app bar, its divider or the status bar. Check sheets and modals too, since they often use a different header.
 - **Between groups:** related items sit close together and unrelated groups sit further apart. There should be no accidental hole in the middle of a card, form or widget.
 - **Outer edges:** content inside a card, tile or home-screen widget fills it evenly. An empty band along the top, bottom or side means the layout is centred or stretched instead of sized.
+- **Inside every control:** the icon and label of each button, pill, chip and input keep the designed padding to the control's own border. When the content is wider than the space inside the padding, React Native and Flutter let it spill into the padding without clipping, so an icon or label almost touching the border is a defect even though nothing is cut off. Compare neighbouring controls: one roomy and one cramped in the same row is the visible symptom.
 - **Last content → bottom:** the last item clears the tab bar, home indicator and keyboard.
 
 If the same gap is wrong on several screens, fix it once in the shared screen shell or component, and remove the per-screen patches. Patches drift apart and leave some screens uncovered.

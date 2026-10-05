@@ -37,7 +37,7 @@ The skill runs eight phases in order. It never skips to fixing before it underst
 |---|---|---|
 | 0 | **Set up the device and the evidence** | Detects the stack, finds the design tokens or theme, gets the app running on a simulator or emulator, and records the typecheck, lint and test baseline. |
 | 1 | **Understand the product** | Works out what the app is, who it is for, the primary goal, core and secondary screens, the actions users perform most often, and builds a **flow inventory from the source**: routes, actions, store mutations, permissions, background jobs, deep links, notifications, widgets and intents. |
-| 2 | **Use it like a real user** | Walks complete journeys, then **every flow in the inventory** in every data state (fresh install, one item, many, long text, completed, missing target, permission denied, interrupted). Checks persistence in storage and fills in a coverage matrix. |
+| 2 | **Use it like a real user** | Walks complete journeys, then **every flow in the inventory** in every data state (fresh install, one item, many, long text, longest generated label, completed, missing target, permission denied, interrupted). Checks persistence in storage and fills in a coverage matrix. |
 | 3 | **Audit and report** | Goes through the UI/UX checklists and the motion checklist, classifies every issue P0–P3, and writes a report. |
 | 4 | **Fix** | Makes the smallest clean change for each issue, reuses the existing tokens and components, consolidates duplicated components, and adds no hacks or arbitrary offsets. |
 | 5 | **Re-test on the device** | Re-runs the flows, checks every modified screen, performs animations at normal speed, and runs typecheck, lint and tests against the baseline. |
@@ -50,7 +50,7 @@ The skill runs eight phases in order. It never skips to fixing before it underst
 - **Flow completeness:** every flow is reachable, gives feedback, lands in the right place, persists across relaunch, can be undone or is confirmed, never dead-ends, and updates every other surface that shows the same data. Store actions that no screen calls are reported.
 - **Out-of-app surfaces:** home-screen widgets in every family (no empty bands, interactive elements write back), notification taps, Shortcuts and App Intents, deep links, and saved photos or files.
 - **Typography:** one hierarchy (display → heading → body → caption → button → tab), consistent sizes, weights and line heights.
-- **Spacing:** accidental values (13, 17, 23…) consolidated into a scale, and every boundary (header to content, gaps between groups, card and widget edges) checked in full-resolution crops.
+- **Spacing:** accidental values (13, 17, 23…) consolidated into a scale, and every boundary (header to content, gaps between groups, card and widget edges, the padding inside each button and chip) checked in full-resolution crops.
 - **Alignment:** headers, cards, lists and especially the **bottom tab bar** (widths, centres, safe area, active states).
 - **Components:** the same concept looks and behaves the same way; duplicates are merged into the canonical version.
 - **Design system:** uses the existing tokens and never invents random values.
@@ -176,6 +176,13 @@ Yes: `/mobile-app-studio --report-only`.
 Only with a strong technical reason. It uses what the project already has, for example Reanimated, Flutter's animation APIs or SwiftUI animations.
 
 ## Changelog
+
+### v1.3.0
+
+- **Padding inside controls is a boundary.** The icon and label of every button, pill, chip and input must keep their padding to the control's own border. Content that spills into the padding is a defect even when nothing is clipped.
+- **Longest generated label.** A new data state: labels built from data (weekdays, names, counts, dates, translations) are tested at their longest value, on the narrowest screen and with the largest text size.
+- **Equal-width buttons with unequal labels** is a new common finding: `flex: 1` siblings where one label is roomy and the other is cramped or overflows.
+- **Complete flows still get a visual check.** A flow marked Complete records the UI findings on its path, so a working flow can no longer hide a visual defect.
 
 ### v1.2.0
 
