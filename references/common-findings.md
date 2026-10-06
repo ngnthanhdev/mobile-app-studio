@@ -32,6 +32,7 @@ These issues keep recurring in mobile prototypes and fast builds. Check for them
 
 ## Visual consistency
 
+- **Type scale drift.** Each screen picks its own size (11, 13, 15, 17, 21…), so the app ends up with ten or more sizes and no clear hierarchy, and labels at 9 to 11 are hard to read. Reduce to at most five even sizes, 12 for captions and 14 for body text, and replace every stray literal, widgets included.
 - **One status, many colours.** "In progress" is green on one screen and pink on another, while green means done elsewhere. Give each semantic state one colour app-wide.
 - **Non-functional chrome:** decorative icons in the app bar, and bookmark or "more" buttons with no handler. Remove them or make them work.
 - **Duplicated badges:** a "PRO" ribbon plus "PRO" text plus a lock on the same tile. Keep one signal.

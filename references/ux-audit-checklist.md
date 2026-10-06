@@ -49,6 +49,22 @@ For every flow ask:
 
 Define one hierarchy adapted to the product: display, heading, subheading, body, secondary, caption, button, tab.
 
+**Type scale.** Use **at most five font sizes** across the app, all **even numbers**:
+
+| Size | Line height | Role |
+|---|---|---|
+| 12 | 16 | Caption, subtitle, labels, tab labels, meta text. Nothing smaller. |
+| 14 | 20 | Normal text: body, buttons, list rows, inputs. |
+| 16 | 22 | Emphasised body, large inputs, card titles. |
+| 20 | 26 | Section headings, key numbers. |
+| 24 | 32 | Screen and sheet titles. |
+
+The upper three may shift to fit the product (for example 18 instead of 16, or 28 instead of 24), but the total stays at five and every value stays even. Build hierarchy with weight and colour, not with another size. Emoji and icons shown as text follow the same scale.
+
+To audit it, list every size literal in the source, not only in the type variants: inline styles, `StyleSheet` entries, widget code (`fontSize`, SwiftUI `font(size:)`, Compose `sp`). Count the distinct values. Any value outside the scale (9, 10, 11, 13, 15, 17, 21…) is a finding. Map it to the nearest size in the scale, adjust the line height, and re-check on the device that nothing wraps or clips.
+
+Two exceptions are allowed, each named in the report: art scaled to its canvas (a generated wallpaper or share image whose text is proportional to the image width), and one hero number on a home-screen or lock-screen widget. A cramped widget is not an exception: shorten the text before going below 12.
+
 **Spacing.** Check screen padding, section gaps, card padding, icon-to-text, title-to-subtitle, buttons, list items, inputs, top and bottom spacing, and modal padding. Replace accidental values (12 here, 13, 17 or 23 elsewhere) with a coherent scale and tokens.
 
 Check every **boundary** on every screen, in a full-resolution crop (see `device-qa-playbook.md`), never in a downscaled screenshot:
@@ -125,7 +141,7 @@ Fix confusing wording, inconsistent terminology, overly technical language, inco
 
 ## §9 Final quality bar
 
-- **Visual:** consistent typography, spacing, alignment and components; balanced hierarchy; polished navigation and bottom tabs; no obvious visual defects.
+- **Visual:** consistent typography (no more than five font sizes, all even, none below 12), spacing, alignment and components; balanced hierarchy; polished navigation and bottom tabs; no obvious visual defects.
 - **UX:** clear navigation and CTAs; predictable interactions; minimal friction; sensible flows; clear feedback; good empty, loading and error states.
 - **Engineering:** no unnecessary hacks; reusable components; the existing architecture respected; business logic preserved; no obvious regressions; a clean implementation.
 - **Principle:** a real person opening the app for the first time immediately understands how to use it, and the whole product feels coherent, intentional and professionally designed.

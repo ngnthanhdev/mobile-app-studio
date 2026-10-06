@@ -49,7 +49,7 @@ The skill runs eight phases in order. It never skips to fixing before it underst
 - **Flows:** obvious next step, primary action, predictable navigation, back behaviour, dead ends, lost progress, feedback after actions.
 - **Flow completeness:** every flow is reachable, gives feedback, lands in the right place, persists across relaunch, can be undone or is confirmed, never dead-ends, and updates every other surface that shows the same data. Store actions that no screen calls are reported.
 - **Out-of-app surfaces:** home-screen widgets in every family (no empty bands, interactive elements write back), notification taps, Shortcuts and App Intents, deep links, and saved photos or files.
-- **Typography:** one hierarchy (display → heading → body → caption → button → tab), consistent sizes, weights and line heights.
+- **Typography:** one hierarchy (display → heading → body → caption → button → tab), consistent weights and line heights, and at most five even font sizes (12 caption, 14 body, then three larger).
 - **Spacing:** accidental values (13, 17, 23…) consolidated into a scale, and every boundary (header to content, gaps between groups, card and widget edges, the padding inside each button and chip) checked in full-resolution crops.
 - **Alignment:** headers, cards, lists and especially the **bottom tab bar** (widths, centres, safe area, active states).
 - **Components:** the same concept looks and behaves the same way; duplicates are merged into the canonical version.
