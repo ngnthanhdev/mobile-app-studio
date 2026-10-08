@@ -67,13 +67,13 @@ The skill runs eight phases in order. It never skips to fixing before it underst
 Clone into your Claude Code skills folder:
 
 ```bash
-git clone https://github.com/ngnthanhdev/mobile-app-studio.git ~/.claude/skills/mobile-app-studio
+git clone https://github.com/orbitextechlab/mobile-app-studio.git ~/.claude/skills/mobile-app-studio
 ```
 
 To install it for one project only:
 
 ```bash
-git clone https://github.com/ngnthanhdev/mobile-app-studio.git .claude/skills/mobile-app-studio
+git clone https://github.com/orbitextechlab/mobile-app-studio.git .claude/skills/mobile-app-studio
 ```
 
 To update:
