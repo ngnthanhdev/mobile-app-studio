@@ -7,7 +7,7 @@ category: frontend
 keywords: [ux-audit, ui-review, mobile, qa, flow-coverage, e2e, widgets, motion, animation, accessibility, design-system, simulator]
 argument-hint: "[scope: whole app | screen or flow] [--flows] [--report-only] [--no-motion]"
 metadata:
-  author: ngnthanhdev
+  author: Orbitex Lab
   version: "1.3.0"
 ---
 

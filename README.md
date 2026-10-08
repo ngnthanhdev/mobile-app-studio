@@ -214,4 +214,4 @@ Only with a strong technical reason. It uses what the project already has, for e
 
 ## License
 
-[MIT](LICENSE) © ngnthanhdev
+[MIT](LICENSE) © Orbitex Lab
